@@ -2,7 +2,7 @@
 #define Game_h
 
 #include <SDL.h>
-#include<iostream>
+#include<SDL_image.h>
 
 class Game {
 public:
@@ -14,12 +14,17 @@ public:
 	void handleEvents();
 	void render();
 	void clean();
-	bool running() { return IsRunning };
+	bool running() { return IsRunning; }
 
 private:
 	bool IsRunning;
 	SDL_Window *window;
 	SDL_Renderer *renderer;
+	enum game_states {
+		MENU = 0,
+		PLAY = 1,
+		GAMEOVER=2
+	};
 };
 
 #endif
