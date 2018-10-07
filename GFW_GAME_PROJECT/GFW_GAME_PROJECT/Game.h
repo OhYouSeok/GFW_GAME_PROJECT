@@ -2,7 +2,8 @@
 #define Game_h
 
 #include <SDL.h>
-#include<SDL_image.h>
+#include <SDL_image.h>
+#include "TextureManager.h"
 
 class Game {
 public:
@@ -15,7 +16,6 @@ public:
 	void render();
 	void clean();
 	bool running() { return IsRunning; }
-
 private:
 	bool IsRunning;
 	SDL_Window *window;
@@ -25,6 +25,8 @@ private:
 		PLAY = 1,
 		GAMEOVER=2
 	};
+	int m_currentFrame;
+	TextureManager m_textureManager;
 };
 
 #endif
