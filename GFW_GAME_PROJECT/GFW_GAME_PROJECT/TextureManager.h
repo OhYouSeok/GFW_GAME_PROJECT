@@ -1,7 +1,4 @@
-#include <SDL.h>
-#include<SDL_image.h>
-#include<iostream>
-#include <map>
+#include "header.h"
 
 class TextureManager {
 public:

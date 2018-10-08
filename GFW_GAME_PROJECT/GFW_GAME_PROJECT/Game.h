@@ -1,9 +1,9 @@
 #ifndef Game_h
 #define Game_h
 
-#include <SDL.h>
-#include <SDL_image.h>
+#include "header.h"
 #include "TextureManager.h"
+#include "GameStateMachine.h"
 
 class Game {
 public:
@@ -26,7 +26,9 @@ private:
 		GAMEOVER=2
 	};
 	int m_currentFrame;
+	int m_currentState;
 	TextureManager m_textureManager;
+	GameStateMachine * m_pGameStateMachine;
 };
 
 #endif

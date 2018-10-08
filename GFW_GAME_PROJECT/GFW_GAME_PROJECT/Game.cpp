@@ -10,8 +10,11 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		IsRunning = true;
 	}
-	SDL_SetRenderDrawColor(renderer, 50, 0, 0, 255);
-	m_textureManager.load("assets/animate-alpha.png", "animate", renderer);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	m_currentState = MENU;
+	m_pGameStateMachine = new GameStateMachine();
+	m_pGameStateMachine->changeState(new MenuState());
+	//m_textureManager.load("assets/animate-alpha.png", "animate", renderer);
 }
 
 void Game:: handleEvents() {
@@ -30,7 +33,16 @@ void Game:: handleEvents() {
 
 }
 void Game::update() {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	switch (m_currentState) {
+	case MENU:
+		break;
+	case PLAY:
+		break;
+	case GAMEOVER:
+		break;
+	default:
+		break;
+	}
 }
 void Game::render() {
 	SDL_RenderClear(renderer);
