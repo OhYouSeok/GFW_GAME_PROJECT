@@ -1,16 +1,15 @@
 #include "Game.h"
 
-Game * game = 0;
-
 int main(int argc, char * argv[]) {
-	game = new Game();
-	game->init("Run For Your Life !", 400, 150, 1024, 768, 0);
-	while (game->running() == true) {
-		game->handleEvents();
-		game->update();
-		game->render();
+
+	if (TheGame::Instance()->init("Living Dead Nightmare", 100, 100, 640, 480, false)) {
+		while (TheGame::Instance()->running() == true) {
+			TheGame::Instance()->handleEvents();
+			TheGame::Instance()->update();
+			TheGame::Instance()->render();
+		}
+		TheGame::Instance()->clean();
 	}
-	game->clean();
 
 	return 0;
 }

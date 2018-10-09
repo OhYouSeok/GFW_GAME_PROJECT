@@ -4,7 +4,6 @@ void GameStateMachine::pushState(GameState * pState) {
 	m_gameStates.push_back(pState);
 	m_gameStates.back()->onEnter();
 }
-
 void GameStateMachine::popState() {
 	if (!m_gameStates.empty()) {
 		if (m_gameStates.back()->onExit()) {
@@ -20,7 +19,7 @@ void GameStateMachine::changeState(GameState * pState) {
 			return;
 		}
 
-		if (m_gameStates.back()->onExit) {
+		if (m_gameStates.back()->onExit()) {
 			delete m_gameStates.back();
 			m_gameStates.pop_back();
 		}

@@ -1,20 +1,26 @@
 #include "Game.h"
 
+Game * Game::s_pInstance = 0;
 Game::Game(){}
 Game::~Game(){}
 
-void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
+bool Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		window = SDL_CreateWindow(title, xpos, ypos, width, height, fullscreen);
 		renderer = SDL_CreateRenderer(window, -1, 0);
 		IsRunning = true;
+
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		m_currentState = MENU;
+		m_pGameStateMachine = new GameStateMachine();
+		m_pGameStateMachine->changeState(new MenuState());
+		if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", renderer)) {
+		}
+
+		return true;
 	}
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	m_currentState = MENU;
-	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->changeState(new MenuState());
-	//m_textureManager.load("assets/animate-alpha.png", "animate", renderer);
+	return false;
 }
 
 void Game:: handleEvents() {
@@ -47,8 +53,7 @@ void Game::update() {
 void Game::render() {
 	SDL_RenderClear(renderer);
 
-	m_textureManager.draw("animate", 0, 0, 128, 82,renderer);
-	m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, renderer);
+	TheTextureManager::Instance()->drawFrame("animate", 0, 0, 128, 82, 1, 1, renderer,SDL_FLIP_NONE);
 
 	SDL_RenderPresent(renderer);
 }
