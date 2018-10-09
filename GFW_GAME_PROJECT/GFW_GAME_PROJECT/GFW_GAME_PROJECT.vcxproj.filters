@@ -18,6 +18,9 @@
     <Filter Include="GameState">
       <UniqueIdentifier>{838b706b-d6a5-4eee-8420-299f4cfe6632}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{b70ec460-c839-4a35-8ee1-c13fa4f36aea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,6 +48,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,6 +93,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
