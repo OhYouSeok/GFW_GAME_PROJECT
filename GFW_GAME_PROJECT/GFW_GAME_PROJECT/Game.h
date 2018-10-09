@@ -1,9 +1,14 @@
+#pragma once
+
 #ifndef Game_h
 #define Game_h
 
 #include "header.h"
 #include "TextureManager.h"
 #include "GameStateMachine.h"
+#include "GameObject.h"
+#include "Player.h"
+#include "Enemy.h"
 
 class Game {
 public:
@@ -24,8 +29,10 @@ public:
 		return s_pInstance;
 	}
 
-	static Game * s_pInstance;
+	SDL_Renderer * getRenderer() const { return renderer; }
+
 private:
+	static Game * s_pInstance;
 	bool IsRunning;
 	SDL_Window *window;
 	SDL_Renderer *renderer;
@@ -36,7 +43,7 @@ private:
 	};
 	int m_currentFrame;
 	int m_currentState;
-
+	std::vector<GameObject *> m_gameObjects;
 	GameStateMachine * m_pGameStateMachine;
 };
 typedef Game TheGame;

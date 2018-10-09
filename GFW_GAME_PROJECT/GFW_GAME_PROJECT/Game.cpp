@@ -17,7 +17,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 		m_pGameStateMachine->changeState(new MenuState());
 		if (!TheTextureManager::Instance()->load("assets/animate-alpha.png", "animate", renderer)) {
 		}
-
+		m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+		m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
 		return true;
 	}
 	return false;
@@ -39,6 +40,9 @@ void Game:: handleEvents() {
 
 }
 void Game::update() {
+	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
+		m_gameObjects[i]->update();
+	}
 	switch (m_currentState) {
 	case MENU:
 		break;
@@ -53,7 +57,9 @@ void Game::update() {
 void Game::render() {
 	SDL_RenderClear(renderer);
 
-	TheTextureManager::Instance()->drawFrame("animate", 0, 0, 128, 82, 1, 1, renderer,SDL_FLIP_NONE);
+	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++) {
+		m_gameObjects[i]->draw();
+	}
 
 	SDL_RenderPresent(renderer);
 }

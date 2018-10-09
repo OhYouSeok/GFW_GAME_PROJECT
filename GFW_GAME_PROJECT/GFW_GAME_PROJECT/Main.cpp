@@ -7,9 +7,15 @@ int main(int argc, char * argv[]) {
 			TheGame::Instance()->handleEvents();
 			TheGame::Instance()->update();
 			TheGame::Instance()->render();
+
+			SDL_Delay(10);
 		}
-		TheGame::Instance()->clean();
 	}
+	else {
+		return -1;
+	}
+
+	TheGame::Instance()->clean();
 
 	return 0;
 }

@@ -13,6 +13,7 @@ public:
 		}
 		return s_pInstance;
 	}
+private:
 	static TextureManager * s_pInstance;
 };
 
